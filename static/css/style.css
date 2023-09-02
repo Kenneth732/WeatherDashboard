@@ -57,3 +57,16 @@ button {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: left;
 }
+
+
+#weatherIcon {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    margin: 0 auto;
+}
+
+#description {
+    font-weight: bold;
+    margin-top: 10px;
+}
