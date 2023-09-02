@@ -46,3 +46,14 @@ button {
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+
+#currentWeather, #forecast {
+    width: 48%;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
