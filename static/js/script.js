@@ -7,4 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const humidity = document.getElementById('humidity');
     const windSpeed = document.getElementById('windSpeed');
     const forecastList = document.getElementById('forecastList');
+
+    searchButton.addEventListener('click', () => {
+        const city = cityInput.value;
+        if (city) {
+            getWeatherData(city);
+        }
+    });
 })
