@@ -70,3 +70,14 @@ button {
     font-weight: bold;
     margin-top: 10px;
 }
+
+
+#temperature, #humidity, #windSpeed {
+    font-weight: bold;
+}
+
+#forecastList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
