@@ -14,4 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
             getWeatherData(city);
         }
     });
+
+    async function getWeatherData(city){
+        
+    }
 })
