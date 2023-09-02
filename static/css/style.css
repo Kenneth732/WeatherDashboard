@@ -38,3 +38,11 @@ button {
     cursor: pointer;
     margin-left: 10px;
 }
+
+
+#weatherInfo {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
