@@ -93,3 +93,11 @@ button {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: left;
 }
+
+
+@media (max-width: 768px) {
+    #currentWeather, #forecast {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
