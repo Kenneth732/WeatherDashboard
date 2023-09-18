@@ -13,63 +13,66 @@ document.addEventListener('DOMContentLoaded', () => {
     searchButton.addEventListener('click', () => {
         const city = cityInput.value;
         if (city) {
-            getWeatherData(city);
+            getData(city);
         }
     });
 
-    async function getWeatherData(city) {
+    async function getData(city) {
         try {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
-            const data = await response.json();
+            const [weatherData, forecastData] = await Promise.all([
+                fetchWeatherData(city),
+                fetchForecastData(city),
+            ]);
 
-            const { main, weather, wind } = data;
-            const [weatherData] = weather;
-
-            weatherIcon.style.backgroundImage = `url('https://openweathermap.org/img/w/${weatherData.icon}.png')`;
-            description.textContent = weatherData.description;
-            temperature.textContent = main.temp;
-            humidity.textContent = main.humidity;
-            windSpeed.textContent = wind.speed;
-
-            getForecastData(city);
+            updateCurrentWeather(weatherData);
+            updateForecast(forecastData);
         } catch (error) {
-            console.error('Error fetching weather data:', error);
+            console.error('Error fetching data:', error);
         }
     }
 
-    async function getForecastData(city) {
-        try {
-            const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`);
-            const data = await response.json();
+    async function fetchWeatherData(city) {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
+        return response.json();
+    }
 
-            const { list } = data;
+    async function fetchForecastData(city) {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`);
+        return response.json();
+    }
 
-            forecastList.innerHTML = '';
+    function updateCurrentWeather(data) {
+        const { main, weather, wind } = data;
+        const [weatherData] = weather;
 
-            for (const forecast of list.slice(0, 5)) {
-                const { dt_txt, main: forecastMain, weather: forecastWeather } = forecast;
-                const [weatherData] = forecastWeather;
+        weatherIcon.style.backgroundImage = `url('https://openweathermap.org/img/w/${weatherData.icon}.png')`;
+        description.textContent = weatherData.description;
+        temperature.textContent = main.temp;
+        humidity.textContent = main.humidity;
+        windSpeed.textContent = wind.speed;
+    }
 
-                const forecastItem = document.createElement('div');
-                forecastItem.classList.add('forecastItem');
-                forecastItem.innerHTML = `
-                    <p>Date: ${dt_txt.split(' ')[0]}</p>
-                    <p>Time: ${dt_txt.split(' ')[1]}</p>
-                    <p>Description: ${weatherData.description}</p>
-                    <p>Temperature: ${forecastMain.temp} &deg;C</p>
-                `;
+    function updateForecast(data) {
+        const { list } = data;
+        forecastList.innerHTML = '';
 
-                forecastList.appendChild(forecastItem);
-            }
-        } catch (error) {
-            console.error('Error fetching forecast data:', error);
+        for (const forecast of list.slice(0, 5)) {
+            const { dt_txt, main: forecastMain, weather: forecastWeather } = forecast;
+            const [weatherData] = forecastWeather;
+
+            const forecastItem = document.createElement('div');
+            forecastItem.classList.add('forecastItem');
+            forecastItem.innerHTML = `
+                <p>Date: ${dt_txt.split(' ')[0]}</p>
+                <p>Time: ${dt_txt.split(' ')[1]}</p>
+                <p>Description: ${weatherData.description}</p>
+                <p>Temperature: ${forecastMain.temp} &deg;C</p>
+            `;
+
+            forecastList.appendChild(forecastItem);
         }
     }
 });
-
-
-
-
 
 
 
@@ -158,3 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
 //         }
 //     }
 // });
+
+
+
+
+
+
+
