@@ -189,29 +189,13 @@ document.addEventListener('DOMContentLoaded', () => {
 ```
 
 - Finally, the `forecastItem` is appended to the `forecastList`, which is a container element for displaying the forecast information.
-
-I hope this detailed explanation helps you understand each part of the code. If you have any more questions or need further clarification, please feel free to ask!
-
-
-
+ 
+- Hey, am Kenneth Mburu A full-stack Developer
+I hope this detailed explanation helps whoever loves how I explain my codes understand each part of the code is how you learn. If you have any more questions or need further clarification call my number (+254) 742164615
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Here is another Ex.
+CodeWise.com with Kenneth Mburu
 
 #2 Weather Data
 
